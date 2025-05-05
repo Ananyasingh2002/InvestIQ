@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with InvestIQ</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.chat-container {
+    background-color: #fff;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #37517e;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.chat-box {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border-bottom: 2px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.chat-box .user-message,
+.chat-box .bot-message {
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.chat-box .user-message {
+    background-color: #4a90e2;
+    color: white;
+    align-self: flex-end;
+    max-width: 70%;
+}
+
+.chat-box .bot-message {
+    background-color: #e0e0e0;
+    color: #333;
+    align-self: flex-start;
+    max-width: 70%;
+}
+
+.chat-input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #fff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: stretch; /* Make items stretch vertically */
+}
+
+.chat-input {
+    flex-grow: 1; /* Input takes up all remaining horizontal space */
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    margin-right: 10px; /* Space between input and button */
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.chat-input:focus {
+    border-color: #37517e;
+    outline: none;
+}
+
+.send-button {
+    background-color: #37517e;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+    margin-left: auto;
+}
+
+.send-button:hover {
+    background-color: #1f3d59;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            Chat with InvestIQ
+        </div>
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will appear here -->
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="user-input" placeholder="Ask me anything..." />
+            <button id="send-button" class="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const sendButton = document.getElementById('send-button');
+        const userInput = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+    
+        // Function to add messages to the chat box
+        function addMessage(message, isBot = false) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add(isBot ? 'bot-message' : 'user-message');
+            messageElement.textContent = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
+    
+        // Send user message to backend and receive bot response
+        function sendMessage() {
+            let userMessage = userInput.value.trim(); // Get user input
+            if (!userMessage) return;
+    
+            addMessage(userMessage); // Display user message
+            userInput.value = ""; // Clear input field
+    
+            // Send to backend for AI processing
+            fetch('/get_gemini_response', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "prompt": userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.response) {
+                    addMessage(data.response, true); // Display bot message
+                } else if (data.error) {
+                    addMessage("❌ Error: " + data.error, true);
+                }
+            })
+            .catch(error => {
+                addMessage("❌ There was an error processing your request.", true);
+                console.error("Fetch error:", error);
+            });
+        }
+    
+        sendButton.addEventListener('click', sendMessage);
+    
+        userInput.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') sendMessage();
+        });
+    </script>
+
+</body>
+
+</html>
