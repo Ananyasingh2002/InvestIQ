@@ -27,7 +27,7 @@ InvestIQ is an advanced website offering personalized financial and business adv
 - **Screenshots**:
   | Loan Form
   | :---: | :---: |
-  | ![Loan Form](https://github.com/Ananyasingh2002/InvestIQ/blob/main/images/5.png) 
+  | ![Loan Form](static/assets/img/5.png) 
 
 ### Business Idea Generator
 - **Description**: Generates personalized business ideas based on user inputs, such as capital, location, and sector.
@@ -37,7 +37,7 @@ InvestIQ is an advanced website offering personalized financial and business adv
 - **Screenshots**:
   | Business Idea Form 
   | :---: | :---: |
-  | ![Business Form](https://github.com/Ananyasingh2002/InvestIQ/blob/main/images/6.png)
+  | ![Business Form](static/assets/img/6.png)
 
 ### Financial Advice Service
 - **Description**: Provides personalized financial advice for SMEs based on the user’s business needs and financial status.
@@ -47,7 +47,7 @@ InvestIQ is an advanced website offering personalized financial and business adv
 - **Screenshots**:
   | Financial Advice Form 
   | :---: | :---: |
-  | ![Advice Form](https://github.com/Ananyasingh2002/InvestIQ/blob/main/images/7.png) 
+  | ![Advice Form](static/assets/img/7.png) 
 
 ## Additional Features
 - **Interactive User Interface**:
