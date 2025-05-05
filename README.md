@@ -10,14 +10,14 @@ InvestIQ is an advanced website offering personalized financial and business adv
 - **Screenshots**:
   | Home Page 1 | Home Page 2 |
   | :---: | :---: |
-  | ![Home Page 1](https://github.com/Ananyasingh2002/InvestIQ/static/assets/img/1.png) | ![Home Page 2](https://github.com/Ananyasingh2002/InvestIQ/static/assets/img/2.png) |
+  | ![Home Page 1](static/assets/img/1.png) | ![Home Page 2](static/assets/img/2.png) |
 
 ### Sign In and Available Services
 - **Description**: Users can securely sign in to access personalized services, including loan prediction, business idea generation, and financial advice.
 - **Screenshots**:
   | Sign In Page | Available Services |
   | :---: | :---: |
-  | ![Sign In](https://github.com/Ananyasingh2002/InvestIQ/static/assets/img/3.png) | ![Services](https://github.com/Ananyasingh2002/InvestIQ/static/assets/img/4.png) |
+  | ![Sign In](static/assets/img/3.png) | ![Services](static/assets/img/4.png) |
 
 ### Loan Prediction Service
 - **Description**: Predicts loan approval chances based on user-provided financial information.
