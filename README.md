@@ -7,8 +7,7 @@ InvestIQ is an advanced website offering personalised financial and business adv
 
 ### Home Page
 - **Description**: The homepage introduces the core features of InvestIQ and provides easy navigation to the key services.
-- **Screenshots**:
-   Home Page 1 :
+- **Screenshots**: Home Page 1 :
 
   
   ![Home Page 1](static/assets/img/1.png)
@@ -73,7 +72,66 @@ The platform provides a user-friendly interface, offering SMES essential tools a
 - Pip (Python package manager)
 - Gemini API Key 2.0 for accessing the generative AI functionality.
 
-### Installation Steps
-1. Clone the GitHub repository:
-   ```bash
-   git clone https://github.com/Ananyasingh2002/InvestIQ.git
+
+
+## Installation Steps 🚀:
+Follow these steps to set up and run the InvestIQ application on your local machine:
+
+**1. Clone the repository**
+Open your terminal and run the following command to clone the project:
+
+```bash
+git clone https://github.com/Ananyasingh2002/InvestIQ.git
+```
+```bash
+cd InvestIQ
+```
+**2. Prepare the environment**
+
+Delete the existing .env file (if present):
+
+```bash
+
+rm .env
+```
+**3. Open and run the Prediction.ipynb notebook in Jupyter or VS Code to ensure everything is functioning properly**
+
+Make sure all required packages used in the notebook are installed. You can install missing packages using:
+
+```bash
+pip install package_name
+```
+**4. Set up API and Flask secret keys**
+Open app.py and do the following:
+
+Replace the placeholder for your API secret key appropriately:
+
+
+```bash
+app.secret_key = "your_flask_secret_key_here"
+```
+To generate a secure key, run:
+
+```bash
+python -c "import secrets; print(secrets.token_hex(16))"
+```
+**5. Install dependencies**
+Ensure Python 3 is installed, then install the necessary packages from requirements.txt:
+
+```bash
+pip install -r requirements.txt
+```
+**6. Run the application**
+Start the Flask server by running:
+
+```bash
+python app.py
+```
+**7. Open the application in your browser**
+
+Go to:
+
+```bash
+http://127.0.0.1:5000
+```
+
